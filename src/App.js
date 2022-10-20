@@ -5,6 +5,7 @@ import Browsing from "./Components/Browsing/Browsing";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import DetailMovie from "./Components/Browsing/DetailMovie";
+import Login from "./Components/Login/Login";
 
 // {/* TODO: Components -> NavBar,
 //     Content ->
@@ -24,6 +25,7 @@ function App() {
     const [currentMovie, setCurrentMovie] = useState({});
     const [searchMovie, setSearchMovie] = useState({});
     const [currentState, setCurrentState] = useState("");
+    const [user, setUser] = useState({});
 
 
     async function getAllMovies() {
@@ -52,6 +54,10 @@ function App() {
                         />
                     </div>
                 );
+            case 'login':
+                return (
+                    <Login user={setUser} />
+                )
 
             case 'search':
                 return (
@@ -73,7 +79,6 @@ function App() {
                                   setCurrentState={setCurrentState}
                         />
                     </div>
-
                 );
         }
 
