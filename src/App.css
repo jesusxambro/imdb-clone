@@ -13,6 +13,53 @@
   }
 }
 
+#detail-movie-page{
+  padding: 20px;
+}
+
+#comment{
+  display: flex;
+  padding-top: 35px;
+}
+#detail-movie-container{
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#movieContent{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-left: 10px;
+}
+#moviePoster-single{
+  display: flex;
+}
+
+#moviePoster{
+  width: 300px;
+  height: 445px;
+}
+#moviePoster:hover{
+  scale: 1.1;
+}
+
+#navbar, #Home, #Login{
+display: flex;
+}
+
+#search-box {
+  display: flex;
+justify-content: flex-end;
+  width: 100%;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
