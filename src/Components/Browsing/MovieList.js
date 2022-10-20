@@ -16,7 +16,11 @@ function MovieList(props){
                             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                                 {props.movieList.map((movie,index) => (
                                     <Grid item xs={2} sm={4} md={4} key={index}>
-                                        <Movie key={index} movie={movie} setCurrentMovie={props.setCurrentMovie}/>
+                                        <Movie setCurrentState={props.setCurrentState}
+                                               key={index}
+                                               movie={movie}
+                                               setCurrentMovie={props.setCurrentMovie}
+                                        />
                                         {/*<Item>xs=2</Item>*/}
                                     </Grid>
                                 ))}

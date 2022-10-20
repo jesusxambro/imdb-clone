@@ -4,6 +4,7 @@ function Movie(props){
 
     function handleClick(event){
     props.setCurrentMovie(props.movie);
+    props.setCurrentState('detail')
     }
     return(
         <div onClick={handleClick} id={"moviePoster"}>

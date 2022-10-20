@@ -13,7 +13,7 @@ function Browsing(props) {
         return(
             <div>
                 Browsing
-                <MovieList movieList={props.movieList} setCurrentMovie={props.setCurrentMovie}/>
+                <MovieList setCurrentState={props.setCurrentState} movieList={props.movieList} setCurrentMovie={props.setCurrentMovie}/>
             </div>
         )
     }

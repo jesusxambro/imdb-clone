@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,6 +9,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {styled, alpha} from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import axios from "axios";
+import movie from "../Browsing/Movie";
 
 
 const StyledInputBase = styled(InputBase)(({theme}) => ({
@@ -45,10 +47,35 @@ const Search = styled('div')(({theme}) => ({
 
 
 function NavBar(props) {
+    const [searchMovie, setSearchMovie] = useState("")
+    const [searchedMovieList, setSearchedMovieList] = useState([])
 
     function handleHome(event) {
         props.setCurrentMovie({})
+        setSearchMovie("")
+        props.setMovieList(props.getAllMovies)
+        props.setCurrentState("");
     }
+
+    function handleSearch(event){
+     setSearchMovie(event.target.value);
+        //onChange={(event) => {setSearchItem(event.target.value)}}
+    }
+
+   async function handleSearchClick() {
+        try {
+            const res = await axios.get(`http://localhost:3001/search?query=${searchMovie}`)
+            setSearchedMovieList(res.data.map((movie) => movie))
+        } catch (error) {
+            console.log(error);
+        }
+        props.searchResults(searchedMovieList)
+
+    }
+
+
+
+
 
     return (
 
@@ -72,9 +99,11 @@ function NavBar(props) {
                             <StyledInputBase
                                 placeholder="Search…"
                                 inputProps={{'aria-label': 'search'}}
+                                value={searchMovie}
+                                onChange={handleSearch}
                             />
                         </Search>
-                        <Button variant="outlined">Search</Button>
+                        <Button onClick={handleSearchClick} variant="outlined">Search</Button>
                     </div>
                 </Toolbar>
             </AppBar>

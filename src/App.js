@@ -39,34 +39,55 @@ function App() {
         getAllMovies();
     }, [])
 
+ function   searchResults(movieList){
+        setMovieList(movieList);
+        setCurrentState("search")
+ }
     function whatToRender() {
+        switch (currentState) {
+            case 'detail':
+                return (
+                    <div>
+                        <DetailMovie movie={currentMovie}
+                        />
+                    </div>
+                );
 
+            case 'search':
+                return (
+                    <div>
+                        <Browsing currentMovie={currentMovie}
+                                  movieList={movieList}
+                                  setCurrentMovie={setCurrentMovie}
+                                  setCurrentState={setCurrentState}
+                        />
+                    </div>
+                );
 
-        // if (currentMovie.title){
-        //     return (
-        //         <div>
-        //             <DetailMovie movie={currentMovie}
-        //         />
-        //         </div>
-        //     )
-        // } else if (currentState) {
-        //     return (
-        //         <div>
-        //
-        //             <Browsing currentMovie={currentMovie}
-        //                     movieList={movieList}
-        //                     setCurrentMovie={setCurrentMovie}
-        //         />
-        //         </div>
-        //
-        //     )
-        // }
+            default:
+                return (
+                    <div>
+                        <Browsing currentMovie={currentMovie}
+                                  movieList={movieList}
+                                  setCurrentMovie={setCurrentMovie}
+                                  setCurrentState={setCurrentState}
+                        />
+                    </div>
+
+                );
+        }
+
     }
 
 
     return (
         <div className="App">
-            <NavBar setCurrentMovie={setCurrentMovie} setCurrentState={setCurrentState}/>
+            <NavBar searchResults={searchResults}
+                    setCurrentMovie={setCurrentMovie}
+                    setCurrentState={setCurrentState}
+                    getAllMovies={getAllMovies}
+                    setMovieList={setMovieList}
+            />
             {whatToRender()}
         </div>
     );
