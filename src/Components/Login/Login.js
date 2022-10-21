@@ -1,19 +1,41 @@
 import React, {useState} from 'react';
 import CustomInput from "../CustomInput";
 import Button from "@mui/material/Button";
+import axios from "axios";
+
+
 
 function Login(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    async function postUserRegistration() {
+        try{
+            const res = axios.post(`http://localhost:3001/register`, {
+                email: email,
+                password: password
+            }).then(function (res){
+                if(res.status === 200){
+                    props.setOverallEmail(email)
+                    props.setCurrentState("");
+                }
+            }).catch(function (error){
+                console.log(error);
+            });
+        } catch(e){
+        }
+
+    }
+
     function handleChangeEmail(e) {
         setEmail(e.target.value)
+
     }
     function handleChangePW(e) {
         setPassword(e.target.value)
     }
     function handleSubmit(){
-        alert("Its working")
+       postUserRegistration()
     }
 
     return (
@@ -23,12 +45,12 @@ function Login(props) {
                 <CustomInput
                     labelText="Email"
                     id="email"
+                    value={email}
+                    handleChange={handleChangeEmail}
                     formControlProps={{
                         fullWidth: true
                     }}
-                    handleChange={handleChangeEmail}
                     type="text"
-                    value={email}
                 />
                 <CustomInput
                     labelText="Password"
@@ -42,7 +64,6 @@ function Login(props) {
                 />
                 <Button type="button"
                         color="primary"
-                        className="form__custom-button"
                         onClick={handleSubmit}
                 >
                     Log in

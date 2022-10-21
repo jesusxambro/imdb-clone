@@ -26,6 +26,7 @@ function App() {
     const [searchMovie, setSearchMovie] = useState({});
     const [currentState, setCurrentState] = useState("");
     const [user, setUser] = useState({});
+    const [email, setEmail] = useState("")
 
 
     async function getAllMovies() {
@@ -51,12 +52,15 @@ function App() {
                 return (
                     <div>
                         <DetailMovie movie={currentMovie}
+                                     email={email}
                         />
                     </div>
                 );
             case 'login':
                 return (
-                    <Login user={setUser} />
+                    <Login user={setUser}
+                           setCurrentState={setCurrentState}
+                           setOverallEmail={setEmail} />
                 )
 
             case 'search':

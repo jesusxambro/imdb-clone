@@ -12,6 +12,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+#password{
+  input-security: auto;
+}
 
 #detail-movie-page{
   padding: 20px;

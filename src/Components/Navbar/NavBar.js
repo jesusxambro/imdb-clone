@@ -74,8 +74,9 @@ function NavBar(props) {
     }
 
 
-
-
+    function handleLogin() {
+        props.setCurrentState('login');
+    }
 
     return (
 
@@ -92,7 +93,7 @@ function NavBar(props) {
                             GMDB &nbsp;&nbsp;&nbsp;
                         </Typography>
                         <Button variant="outlined" id="Home" onClick={handleHome}>Home</Button> &nbsp;&nbsp;
-                        <Button variant="outlined" id="Login">Login</Button>
+                        <Button variant="outlined" id="Login" onClick={handleLogin}>Login</Button>
                     </div>
                     <div id="search-box">
                         <Search>
